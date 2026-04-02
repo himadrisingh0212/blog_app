@@ -1,3 +1,13 @@
-A Ruby on Rails web application for creating, managing, and viewing blog posts with user authentication.
-Built using Ruby on Rails, HTML and CSS for a clean and scalable architecture.
-Clone the repo, run bundle install, rails db:migrate, and start the server with rails server to explore the app.
+📘 Blog App
+A simple and scalable blog application built using Ruby on Rails that allows users to create, read, update, and delete blog posts with authentication and role-based access.
+🚀 Features
+User authentication (Sign up / Login / Logout)
+Create, edit, and delete blog posts
+Role-based access (e.g., admin / user)
+Clean and responsive UI
+Secure handling of user data
+🛠️ Tech Stack
+Backend: Ruby on Rails
+Frontend: HTML, CSS, ERB
+Authentication: Devise (if used)
+Version Control: Git & GitHub
