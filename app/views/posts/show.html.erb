@@ -1,0 +1,23 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+    <strong><%= comment.name %>:</strong>
+    <p><%= comment.body %></p>
+  </div>
+<% end %>
+
+<h3>Add a Comment</h3>
+<%= form_with(model: [@post, Comment.new]) do |f| %>
+    <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <%= f.submit "Post Comment" %>
+<% end %>

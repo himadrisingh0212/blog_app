@@ -1,0 +1,36 @@
+<section id="hero" class="hero d-flex flex-column justify-content-center align-items-center">
+<h1 style="color: white;">Welcome to my app 💕</h1>
+  <p style="color: white;">Blog Diary📚</p>
+</section>
+
+<div class="posts-section">
+
+<h1>Posts</h1>
+
+<%= link_to "Create Post", new_post_path, class: "btn btn-success mb-3" %>
+
+<% @posts.each do |post| %>
+
+  
+
+  <div class="post mb-4 p-3 border rounded">
+
+    <!-- 👤 User Info -->
+    <div class="d-flex align-items-center mb-2">
+      
+      <% if post.user.avatar.attached? %>
+        <%= image_tag post.user.avatar, width: 40, height: 40, class: "rounded-circle me-2" %>
+      <% else %>
+        <%= image_tag "default-avatar.png", width: 40, height: 40, class: "rounded-circle me-2" %>
+      <% end %>
+
+      <strong><%= post.user.email %></strong>
+    </div>
+
+    <!-- 📝 Post Content -->
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p><%= post.content %></p>
+
+  </div>
+<% end %>
+</div>

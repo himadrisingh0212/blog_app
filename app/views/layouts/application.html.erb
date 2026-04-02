@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>BlogApp</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+ 
+  <%= stylesheet_link_tag "bootstrap.min", media: "all" %>
+  <%= stylesheet_link_tag "bootstrap-icons", media: "all" %>
+  <%= stylesheet_link_tag "main", media: "all" %>
+  <%= stylesheet_link_tag "demo", media: "all" %>
+  
+
+    <title><%= content_for(:title) || "Blog App" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Blog App">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+  
+  
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+
+  
+
+  
+  <!-- Main Content -->
+  <main id="main">
+    
+  </main>
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+
+  <%= link_to "BlogApp", authenticated_root_path, class: "navbar-brand" %>
+
+    <div class="ms-auto d-flex align-items-center">
+
+      <% if user_signed_in? %>
+
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar, width: 40, height: 40, class: "rounded-circle me-2" %>
+        <% end %>
+        
+        <%= link_to "Profile", profile_path, class: "nav-link" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link btn btn-link" %>
+       
+      <% else %>
+     
+      <!-- Direct Google OAuth Sign In -->
+      <%= link_to "Login with Google", user_google_oauth2_omniauth_authorize_path,
+       class: "nav-link", data: { turbo: false } %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>
